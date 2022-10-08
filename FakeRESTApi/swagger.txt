@@ -1,0 +1,64 @@
+ API: GET /api/v1/Authors
+ Test Case 1: ensure that response is 200 OK
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass
+ 
+ API: GET /api/v1/Authors
+ Test Case 2: ensure that objects inside response contain, id, idBook, firstName, lastName
+ Expected Result: response contains id, idBook, firstName, lastName
+ Actual Result: response contains id, idBook, firstName, lastName
+ Status: Pass
+ 
+--------------------------------------------------------------------------------------------
+ API: POST /api/v1/Authors
+ Test Case 1: Register a new valid Author successfully and response code 200 OK
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass
+ 
+ API: POST /api/v1/Authors
+ Test Case 2: ensure that firstname & lastname should be mandatory
+ Expected Result: firstname & lastname should be mandatory
+ Actual Result: firstname & lastname should be mandatory
+ Status: pass
+
+----------------------------------------------------------------------------------------------
+ API: GET /api/v1/Authors/authors/books/{idBook}
+ Test Case 1: response should be 200 OK.
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass
+
+ API: GET /api/v1/Authors/authors/books/{idBook}
+ Test Case 2: Searching with valid idBook, response body should contain all relative data.
+ Expected Result: Searching with valid idBook = 1 (same for idBook 2,3).
+ Actual Result:   All results contain the data that relative to the idBook 
+ Status: Pass
+ 
+----------------------------------------------------------------------------------------------
+ API: GET /api/v1/Authors/{id}
+ Test Case 1: Get unvalied author, response 404 Not Found
+ Expected Result: 404 Not Found
+ Actual Result: 404 Not Found
+ Status: Pass 
+
+ ----------------------------------------------------------------------------------------------
+ API: PUT /api/v1/Authors/{id}
+ Test Case 1: ensure that author's data (firstname, lastname) are updated successfully.
+ Expected Result: After Updating (firstname, lastname), Author's data in response is updated successfully
+ Actual Result: Author's data in response is updated successfully
+ Status: Pass
+
+ API: PUT /api/v1/Authors/{id}
+ Test Case 2: response should be 200 OK.
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass
+ 
+ ----------------------------------------------------------------------------------------------
+ API: DELETE /api/v1/Authors/{id}
+ Test Case 1: Delete Author and ensure that response code is 200 OK
+ Expected Result: 200 OK
+ Actual Result: 200 OK
+ Status: Pass 

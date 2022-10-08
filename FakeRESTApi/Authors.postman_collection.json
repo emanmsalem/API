@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "c1782c2f-e2dd-4a98-9297-bd67fe2dd2d7",
+		"name": "Authors",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12201219"
+	},
+	"item": [
+		{
+			"name": "get authors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"ensure that response is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Objects inside response contain, id, idBook, firstName, lastName\", function () {\r",
+							"\t\t\t\t\t\t\t\t\tvar jsonData = pm.response.json();\r",
+							"\t\t\t\t\t\t\t\t\tpm.expect(jsonData[0].id);\r",
+							"\t\t\t\t\t\t\t\t\tpm.expect(jsonData[0].idBook);\r",
+							"\t\t\t\t\t\t\t\t\tpm.expect(jsonData[0].firstName);\r",
+							"\t\t\t\t\t\t\t\t\tpm.expect(jsonData[0].lastName);\r",
+							"\t\t\t\t\t\t\t\t\t});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/v1/Authors",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Authors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post authors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code for register users is 201\", function () {\r",
+							"\t\tpm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"check if firstName and last name found\", function() {\r",
+							"\t\t\t\t\t\t\r",
+							"\t\t\t\t\t\t\tlet data = pm.response.json();\r",
+							"\t\t\t\t\t\t\tlet keys = Object.keys(data);\r",
+							"\t\t\t\t\t\t\tpm.expect(keys.length).to.equal(4);\r",
+							"\t\t\t\t\t\t\tpm.expect(keys).to.include(\"firstName\");\r",
+							"\t\t\t\t\t\t\tpm.expect(keys).to.include(\"lastName\");\r",
+							"\t\t\t\t\t\t\t})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"idBook\": 0,\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/v1/Authors",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Authors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get authors books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var dataJs=pm.response.json();\r",
+							"pm.test(\"Verify that all respons contain the Book id that was inserted\",function(){\r",
+							"\t\t\t\t\t\t\tpm.expect(dataJs[0].idBook).to.equals(1);\r",
+							"\t\t\t\t\t\t\tpm.expect(dataJs[1].idBook).to.equals(1);\r",
+							"\t\t\t\t\t\t\tpm.expect(dataJs[2].idBook).to.equals(1);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/v1/Authors/authors/books/{{idBook}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Authors",
+						"authors",
+						"books",
+						"{{idBook}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put authors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var data=pm.response.json();\r",
+							"pm.test(\"ensure that author's data (firstname, lastname) are updated successfully\",function(){\r",
+							"\t\t\t\tpm.expect(data.id).to.equals(0);\r",
+							"\t\t\t\tpm.expect(data.idBook).to.equals(1);\r",
+							"\t\t\t\tpm.expect(data.firstName).to.equals(\"test first name\");\r",
+							"\t\t\t\tpm.expect(data.lastName).to.equals(\"test last name\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"idBook\": 1,\r\n  \"firstName\": \"test first name\",\r\n  \"lastName\": \"test last name\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/v1/Authors/{{id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Authors",
+						"{{id}}"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get unvalied author, response 404 Not Found\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/v1/Authors/{{id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Authors",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete Author and ensure that response code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/v1/Authors/{{id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Authors",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://fakerestapi.azurewebsites.net",
+			"type": "string"
+		},
+		{
+			"key": "idBook",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "id",
+			"value": "0",
+			"type": "string"
+		}
+	]
+}

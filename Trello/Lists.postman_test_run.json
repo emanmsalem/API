@@ -1,0 +1,244 @@
+{
+	"id": "2bc603aa-bbef-44e8-81b9-d57e891e47d3",
+	"name": "Lists",
+	"timestamp": "2022-10-05T02:21:33.613Z",
+	"collection_id": "12201219-5cd658c0-04c0-4b60-8ef6-0ced25c48ebb",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 20,
+	"totalFail": 1,
+	"results": [
+		{
+			"id": "67cf51da-a411-4acc-a53f-99f9941f56e9",
+			"name": "get all lists",
+			"url": "https://api.trello.com/1/boards/63240270e16bb800701be8a3/lists?key=f0f5bc17aadd094d4e6f3ad17a3520df&token=e4a44cc95a5f023bd6de5feaf290fb542ceb9585e9584c555b83c3eeabcbb3df",
+			"time": 217,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Assert on the first an last lists that are being returned": true,
+				"Assert on the default lists on the board": true,
+				"Assert on the default lists": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert on the first an last lists that are being returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert on the default lists on the board": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert on the default lists": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				217
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Assert on the first an last lists that are being returned": true,
+					"Assert on the default lists on the board": true,
+					"Assert on the default lists": true
+				}
+			]
+		},
+		{
+			"id": "97c7c34e-6bbf-45d9-a725-6ceb5103e034",
+			"name": "create list",
+			"url": "https://api.trello.com/1/lists?idBoard=63240270e16bb800701be8a3&name=doneList&key=f0f5bc17aadd094d4e6f3ad17a3520df&token=e4a44cc95a5f023bd6de5feaf290fb542ceb9585e9584c555b83c3eeabcbb3df",
+			"time": 271,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Assert that the id should be returned": true,
+				"Assert that the name should be returned": true,
+				"Assert that the idBoard should be returned": true,
+				"Assert that the closed is false": true,
+				"Assert that the limits is empty object": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the id should be returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the name should be returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the idBoard should be returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the closed is false": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the limits is empty object": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				271
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Assert that the id should be returned": true,
+					"Assert that the name should be returned": true,
+					"Assert that the idBoard should be returned": true,
+					"Assert that the closed is false": true,
+					"Assert that the limits is empty object": true
+				}
+			]
+		},
+		{
+			"id": "b6445be0-64a0-4112-b544-efa707b15943",
+			"name": "get created list",
+			"url": "https://api.trello.com/1/lists/633cea2d49fdb301816e5f30?key=f0f5bc17aadd094d4e6f3ad17a3520df&token=e4a44cc95a5f023bd6de5feaf290fb542ceb9585e9584c555b83c3eeabcbb3df",
+			"time": 193,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Assert that the id should be returned": true,
+				"Assert that the name should be returned": true,
+				"Assert that the idBoard should be returned": true,
+				"Assert that the closed is false": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the id should be returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the name should be returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the idBoard should be returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the closed is false": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				193
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Assert that the id should be returned": true,
+					"Assert that the name should be returned": true,
+					"Assert that the idBoard should be returned": true,
+					"Assert that the closed is false": true
+				}
+			]
+		},
+		{
+			"id": "fa9c3087-c7a8-4dcb-b6a8-4b60a1fa6129",
+			"name": "archive/unarchive list",
+			"url": "https://api.trello.com/1/lists/633cea2d49fdb301816e5f30/closed?key=f0f5bc17aadd094d4e6f3ad17a3520df&token=e4a44cc95a5f023bd6de5feaf290fb542ceb9585e9584c555b83c3eeabcbb3df",
+			"time": 219,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Set-Cookie is returned in the response header": true,
+				"Set-Cookie contains isEnterpriseAdmin": true,
+				"Assert that the if the value is false, it is unrachived": true,
+				"Assert that the if the value is true, it is unrachived": false,
+				"Assert on value and log the result on the console log archived or unarchived": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Set-Cookie is returned in the response header": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Set-Cookie contains isEnterpriseAdmin": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the if the value is false, it is unrachived": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the if the value is true, it is unrachived": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Assert on value and log the result on the console log archived or unarchived": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				219
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Set-Cookie is returned in the response header": true,
+					"Set-Cookie contains isEnterpriseAdmin": true,
+					"Assert that the if the value is false, it is unrachived": true,
+					"Assert that the if the value is true, it is unrachived": false,
+					"Assert on value and log the result on the console log archived or unarchived": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 900,
+	"collection": {
+		"requests": [
+			{
+				"id": "67cf51da-a411-4acc-a53f-99f9941f56e9",
+				"method": "GET"
+			},
+			{
+				"id": "97c7c34e-6bbf-45d9-a725-6ceb5103e034",
+				"method": "POST"
+			},
+			{
+				"id": "b6445be0-64a0-4112-b544-efa707b15943",
+				"method": "GET"
+			},
+			{
+				"id": "fa9c3087-c7a8-4dcb-b6a8-4b60a1fa6129",
+				"method": "GET"
+			}
+		]
+	}
+}

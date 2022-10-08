@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "139ba7e5-c04a-44f6-bc27-d4a36b25650e",
+		"name": "Boards",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12201219"
+	},
+	"item": [
+		{
+			"name": "get all open boards",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BaseURL}}/1/members/me?boards=open&key={{key}}&token={{token}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"1",
+						"members",
+						"me"
+					],
+					"query": [
+						{
+							"key": "boards",
+							"value": "open"
+						},
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert that the permissionLevel should be private\", function () {\r",
+							"\t\t\t\t\t\t\tvar jsonData = pm.response.json();\r",
+							"\t\t\t\t\t\t\tpm.expect(jsonData.prefs.permissionLevel).to.eql(\"private\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert that canBePublic is true\", function () {\r",
+							"\t\t\t\t\t\t\tvar jsonData = pm.response.json();\r",
+							"\t\t\t\t\t\t\tpm.expect(jsonData.prefs.canBePublic).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert that canInvite is true\", function () {\r",
+							"\t\t\t\t\t\t\tvar jsonData = pm.response.json();\r",
+							"\t\t\t\t\t\t\tpm.expect(jsonData.prefs.canInvite).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/1/boards/?key={{key}}&token={{token}}&name={{boardName}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"1",
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "name",
+							"value": "{{boardName}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get boards",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assertion of returned boards\", function () {\r",
+							"\t\t\t\t\tvar jsonData = pm.response.json();\r",
+							"\t\t\t\t\tvar length_idBoards = jsonData.idBoards.length;\r",
+							"\t\t\t\t\tvar FirstBoardID = jsonData.idBoards[0];\r",
+							"\t\t\t\t\tvar LastBoardID = jsonData.idBoards[length_idBoards - 1];\r",
+							"\r",
+							"\t\t\t\t\t\tfor (var i = 0; i < length_idBoards; i++) {}\r",
+							"\t\t\t\t\t\tconsole.log(\"The Total Number of Boards that returned is = \" + length_idBoards);\r",
+							"\t\t\t\t\t\tconsole.log(\"The First Boards that returned is = \" + FirstBoardID);\r",
+							"\t\t\t\t\t\tconsole.log(\"The Last Boards that returned is = \" + LastBoardID);\r",
+							"\r",
+							"\t\t\t\t\t\tpm.environment.set(\"FirstBoardID\", FirstBoardID);\r",
+							"\t\t\t\t\t\tpm.environment.set(\"LastBoardID\", LastBoardID);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/1/members/me?boards=open&key={{key}}&token={{token}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"1",
+						"members",
+						"me"
+					],
+					"query": [
+						{
+							"key": "boards",
+							"value": "open"
+						},
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert on the response body\", function () {\r",
+							"\tpm.response.to.have.body(\"removed\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/1/boards/{{FirstBoardID}}?key={{key}}&token={{token}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"1",
+						"boards",
+						"{{FirstBoardID}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "key",
+			"value": "f0f5bc17aadd094d4e6f3ad17a3520df",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "token",
+			"value": "e4a44cc95a5f023bd6de5feaf290fb542ceb9585e9584c555b83c3eeabcbb3df",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "BaseURL",
+			"value": "https://api.trello.com",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "boardName",
+			"value": "new_board_test",
+			"disabled": true
+		},
+		{
+			"key": "FirstBoardID",
+			"value": "63240270e16bb800701be8a3",
+			"disabled": true
+		}
+	]
+}

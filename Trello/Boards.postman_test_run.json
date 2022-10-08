@@ -1,0 +1,163 @@
+{
+	"id": "51a2357e-e240-4506-83c8-dfcac7b9f3b1",
+	"name": "Boards",
+	"timestamp": "2022-10-05T02:20:59.548Z",
+	"collection_id": "12201219-139ba7e5-c04a-44f6-bc27-d4a36b25650e",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 7,
+	"totalFail": 1,
+	"results": [
+		{
+			"id": "836a5038-7fed-4b20-a740-46bad11bcebe",
+			"name": "get all open boards",
+			"url": "https://api.trello.com/1/members/me?boards=open&key=f0f5bc17aadd094d4e6f3ad17a3520df&token=e4a44cc95a5f023bd6de5feaf290fb542ceb9585e9584c555b83c3eeabcbb3df",
+			"time": 211,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				211
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "8059d530-7b7e-4347-86b7-dad4b6be0deb",
+			"name": "Create Board",
+			"url": "https://api.trello.com/1/boards/?key=452fc980e320ad5fa26b9954d9110ca7&token=dfd4d57143b7e44e5a5dc108cc79b6008c137577fc77b69de911cbe02d29b0b5&name=new_board_test",
+			"time": 449,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Assert that the permissionLevel should be private": true,
+				"Assert that canBePublic is true": true,
+				"Assert that canInvite is true": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that the permissionLevel should be private": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that canBePublic is true": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert that canInvite is true": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				449
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Assert that the permissionLevel should be private": true,
+					"Assert that canBePublic is true": true,
+					"Assert that canInvite is true": true
+				}
+			]
+		},
+		{
+			"id": "41580af7-b528-4d73-838d-def33bdd3a01",
+			"name": "get boards",
+			"url": "https://api.trello.com/1/members/me?boards=open&key=f0f5bc17aadd094d4e6f3ad17a3520df&token=e4a44cc95a5f023bd6de5feaf290fb542ceb9585e9584c555b83c3eeabcbb3df",
+			"time": 244,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Assertion of returned boards": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assertion of returned boards": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				244
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Assertion of returned boards": true
+				}
+			]
+		},
+		{
+			"id": "160c3eb8-2b77-47e3-bac8-c1d517c03af9",
+			"name": "Delete Board",
+			"url": "https://api.trello.com/1/boards/63240270e16bb800701be8a3?key=f0f5bc17aadd094d4e6f3ad17a3520df&token=e4a44cc95a5f023bd6de5feaf290fb542ceb9585e9584c555b83c3eeabcbb3df",
+			"time": 199,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Assert on the response body": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Assert on the response body": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				199
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Assert on the response body": false
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1103,
+	"collection": {
+		"requests": [
+			{
+				"id": "836a5038-7fed-4b20-a740-46bad11bcebe",
+				"method": "GET"
+			},
+			{
+				"id": "8059d530-7b7e-4347-86b7-dad4b6be0deb",
+				"method": "POST"
+			},
+			{
+				"id": "41580af7-b528-4d73-838d-def33bdd3a01",
+				"method": "GET"
+			},
+			{
+				"id": "160c3eb8-2b77-47e3-bac8-c1d517c03af9",
+				"method": "GET"
+			}
+		]
+	}
+}

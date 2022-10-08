@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "5cd658c0-04c0-4b60-8ef6-0ced25c48ebb",
+		"name": "Lists",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12201219"
+	},
+	"item": [
+		{
+			"name": "get all lists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert on the first an last lists that are being returned\", function () {\r",
+							"\t\tvar jsonData = pm.response.json();\r",
+							"\t\tvar length_idLists = jsonData.length;\r",
+							"\t\tvar FirstListID = jsonData[0].id;\r",
+							"\t\tvar LastListID = jsonData[length_idLists - 1].id;\r",
+							"\r",
+							"\t\tfor (var i = 0; i < length_idLists; i++) { }\r",
+							"\t\tconsole.log(\"The Total Number of lists that returned is = \" + length_idLists);\r",
+							"\t\tconsole.log(\"The First Boards that returned is = \" + FirstListID);\r",
+							"\t\tconsole.log(\"The Last Boards that returned is = \" + LastListID);\r",
+							"\r",
+							"\t\tpm.environment.set(\"FirstListID\", FirstListID);\r",
+							"\t\tpm.environment.set(\"LastListID\", LastListID);\r",
+							"});\r",
+							"\t\t\t\t\t\t\t\t\r",
+							"pm.test(\"Assert on the default lists\", function () {\r",
+							"\t\tpm.test(\"Assert on the default lists on the board\", function () {\r",
+							"\t\t\t\tvar jsonData = pm.response.json();\r",
+							"\t\t\t\tvar length_nameLists = jsonData.length;\r",
+							"\r",
+							"\t\t\t\tfor (var i = 0; i < length_nameLists; i++) { }\r",
+							"\t\t\t\tpm.expect(jsonData[length_nameLists - 1].name).eql(\"Done\");\r",
+							"\t\t\t\tpm.expect(jsonData[length_nameLists - 2].name).eql(\"Doing\");\r",
+							"\t\t\t\tpm.expect(jsonData[length_nameLists - 3].name).eql(\"To Do\");\r",
+							"\t\t});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/1/boards/{{FirstBoardID}}/lists?key={{key}}&token={{token}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"1",
+						"boards",
+						"{{FirstBoardID}}",
+						"lists"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert that the id should be returned\", function () {\r",
+							"\t\t\tvar jsonData = pm.response.json();\r",
+							"\t\t\tpm.expect(jsonData.id);\r",
+							"});\r",
+							"\t\t\t\t\t\t\t\t\r",
+							"pm.test(\"Assert that the name should be returned\", function () {\r",
+							"\t\t\tvar jsonData = pm.response.json();\r",
+							"\t\t\tpm.expect(jsonData.name);\r",
+							"});\r",
+							"\t\t\t\t\t\t\t\t\r",
+							"pm.test(\"Assert that the idBoard should be returned\", function () {\r",
+							"\t\t\tvar jsonData = pm.response.json();\r",
+							"\t\t\tpm.expect(jsonData.idBoard);\r",
+							"});\r",
+							"\t\t\t\t\t\t\t\r",
+							"pm.test(\"Assert that the closed is false\", function () {\r",
+							"\t\t\tvar jsonData = pm.response.json();\r",
+							"\t\t\tpm.expect(jsonData.closed).eql(false);\r",
+							"});\r",
+							"\t\t\t\t\t\t\t\t\r",
+							"pm.test(\"Assert that the limits is empty object\", function () {\r",
+							"\t\t\tvar jsonData = pm.response.json();\r",
+							"\t\t\tpm.expect(jsonData.limits).to.be.a(\"Object\").empty;\r",
+							"});\r",
+							"\t\t\t\t\t\t\t\t\t\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"idList\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/1/lists?idBoard={{FirstBoardID}}&name={{listName}}&key={{key}}&token={{token}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"1",
+						"lists"
+					],
+					"query": [
+						{
+							"key": "idBoard",
+							"value": "{{FirstBoardID}}"
+						},
+						{
+							"key": "name",
+							"value": "{{listName}}"
+						},
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get created list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert that the id should be returned\", function () {\r",
+							"\tvar jsonData = pm.response.json();\r",
+							"\tpm.expect(jsonData.id);\r",
+							"});\r",
+							"\t\t\r",
+							"pm.test(\"Assert that the name should be returned\", function () {\r",
+							"\tvar jsonData = pm.response.json();\r",
+							"\tpm.expect(jsonData.name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert that the idBoard should be returned\", function () {\r",
+							"\tvar jsonData = pm.response.json();\r",
+							"\tpm.expect(jsonData.idBoard);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert that the closed is false\", function () {\r",
+							"\tvar jsonData = pm.response.json();\r",
+							"\tpm.expect(jsonData.closed).eql(false);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/1/lists/{{idList}}?key={{key}}&token={{token}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"1",
+						"lists",
+						"{{idList}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "archive/unarchive list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Set-Cookie is returned in the response header\", function () {\r",
+							"\tpm.response.to.have.header(\"Set-Cookie\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Set-Cookie contains isEnterpriseAdmin\", function () {\r",
+							"\tpm.environment.set(\"cookie\", pm.response.headers.get(\"Set-Cookie\"));\r",
+							"\tpm.expect(pm.environment.get(\"cookie\")).to.include('isEnterpriseAdmin');\r",
+							"});\r",
+							"\t\t\t\t\t\t\t\t\r",
+							"pm.test(\"Assert that the if the value is false, it is unrachived\", function () {\r",
+							"\tvar jsonData = pm.response.json();\r",
+							"\tpm.expect(jsonData._value).false;\r",
+							"});\r",
+							"\t\t\r",
+							"pm.test(\"Assert that the if the value is true, it is unrachived\", function () {\r",
+							"\tvar jsonData = pm.response.json();\r",
+							"\tpm.expect(jsonData._value).true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Assert on value and log the result on the console log archived or unarchived\", function () {\r",
+							"\tvar jsonData = pm.response.json();\r",
+							"\tif (pm.expect(jsonData._value) == true)\r",
+							"\tconsole.log('archived');\r",
+							"\telse {\r",
+							"\tpm.expect(jsonData._value) == false;\r",
+							"    console.log('unrachived');\r",
+							"\t}\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/1/lists/{{idList}}/closed?key={{key}}&token={{token}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"1",
+						"lists",
+						"{{idList}}",
+						"closed"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
